@@ -26,6 +26,13 @@ const Button = styled.button`
   z-index: 10;
 `
 
+const GroupTooltip = styled.label`
+  position: absolute;
+  color: white;
+  z-index: 1;
+  left: 50%;
+`
+
 const initBgColor = '#1A192B'
 
 const connectionLineStyle = { stroke: '#fff' }
@@ -156,6 +163,7 @@ const CustomNodeFlow = () => {
       <ReactFlowProvider>
         <SideNavPanel />
         <Container ref={reactFlowWrapper}>
+          <GroupTooltip>Press "Shift" and then select nodes with mouse to group them</GroupTooltip>
           <ReactFlow
             nodes={nodes}
             edges={edges}
