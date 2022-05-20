@@ -52,13 +52,13 @@ const CustomNodeFlow = () => {
 
   useEffect(() => {
     setEdges(initialEdges)
-  }, [])
+  }, [setEdges])
 
 
   const onConnect = useCallback(
     (params) => setEdges((eds) =>
       addEdge({ ...params, animated: true, style: { stroke: '#fff' } }, eds)),
-    []
+    [setEdges]
   );
 
   const handleClick = (e, node) => {
@@ -95,7 +95,7 @@ const CustomNodeFlow = () => {
 
       setNodes((nds) => nds.concat(newNode))
     },
-    [reactFlowInstance]
+    [reactFlowInstance, setNodes]
   )
 
   const handleSelect = (data) => {

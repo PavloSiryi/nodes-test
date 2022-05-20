@@ -110,33 +110,31 @@ const EditModal = ({ currentNode, isOpen, setIsOpen, setNodes }) => {
     setPorttypeLabels((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const getUpdatedNode = (node) => ({
-    ...node,
-    data: {
-      ...node.data,
-      label: nodeLabel,
-      ports: {
-        inputs,
-        outputs,
-      }
-    },
-    style: {
-      ...node.style,
-      backgroundColor: nodeBgColor,
-    },
-  })
-
   useEffect(() => {
     setNodes((nodes) =>
       nodes.map((node) => {
         if (node.id === currentNode.id) {
-          return getUpdatedNode(node)
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              label: nodeLabel,
+              ports: {
+                inputs,
+                outputs,
+              }
+            },
+            style: {
+              ...node.style,
+              backgroundColor: nodeBgColor,
+            },
+          }
         }
 
         return node
       })
     )
-  }, [isOpen])
+  }, [isOpen, currentNode.id, setNodes, inputs, nodeBgColor, nodeLabel, outputs])
 
   const renderPortsList = (type) => {
     const parameters = type === "input" ? {

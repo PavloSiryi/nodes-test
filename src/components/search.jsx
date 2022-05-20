@@ -18,7 +18,7 @@ const Search = ({ setNodes }) => {
     } else {
       setNodes(initialNodes)
     }
-  }, [value])
+  }, [value, setNodes])
 
   return (
     <input type="text" value={value} onChange={handleChange} placeholder="Search node" />
